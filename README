@@ -9,8 +9,7 @@ Usage:
 from rados import Rados
 
 a = Rados()
-a.create_pool("testi")
-b = a.open_pool("testi")
+b = a.get_pool("testi")
 
 c = b.get_object("kello")
 c.write("kalaa")
