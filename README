@@ -1,0 +1,31 @@
+python-rados
+
+Description:
+============
+Python-rados lets you store arbitrary numbers of key/value blobs on top of Ceph librados.
+
+Usage:
+======
+from rados import Rados
+
+a = Rados()
+a.create_pool("testi")
+b = a.open_pool("testi")
+
+c = b.get_object("kello")
+c.write("kalaa")
+c.seek(0)
+print c.read()
+
+b.remove_object("kello")
+
+License:
+========
+python-rados is licensed under LGPL 2.1, see file LICENSE for details.
+
+Author:
+=======
+Hannu Valtonen <hannu.valtonen@ormod.com>. For bug reports, patches or anything else, please don't hesitate to send
+mail my way.
+
+Copyright: Hannu Valtonen <hannu.valtonen@ormod.com> 2011
