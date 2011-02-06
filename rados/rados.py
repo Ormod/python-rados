@@ -24,6 +24,7 @@ class rados_pool_stat_t(Structure):
                 ("num_object_copies", c_uint64),
                 ("num_objects_missing_on_primary", c_uint64),
                 ("num_objects_unfound", c_uint64),
+                ("num_objects_degraded", c_uint64),
                 ("num_rd", c_uint64),
                 ("num_rd_kb", c_uint64),
                 ("num_wr", c_uint64),
@@ -116,11 +117,21 @@ class RadosPool(object):
     @object_deleted
     def get_stats(self):
         stats = rados_pool_stat_t()
-        #problem with this, causes a segfault when called
         ret = self.librados.rados_stat_pool(self.pool, byref(stats))
         if ret < 0:
             raise RadosError("Couldn't get stats from pool")
-        return stats
+        return {'num_bytes': stats.num_bytes,
+                'num_kb': stats.num_kb,
+                'num_objects': stats.num_objects,
+                'num_object_clones': stats.num_object_clones,
+                'num_object_copies': stats.num_object_copies,
+                "num_objects_missing_on_primary": stats.num_objects_missing_on_primary,
+                "num_objects_unfound": stats.num_objects_unfound,
+                "num_objects_degraded": stats.num_objects_degraded,
+                "num_rd": stats.num_rd,
+                "num_rd_kb": stats.num_rd_kb,
+                "num_wr": stats.num_wr,
+                "num_wr_kb": stats.num_wr_kb }
 
     @object_deleted
     def remove_object(self, key):
