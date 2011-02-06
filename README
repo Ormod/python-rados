@@ -18,6 +18,17 @@ c.seek(0)
 print c.read()
 
 b.remove_object("kello")
+b.write("pertti", "jeah")
+
+c = b.get_object("pertti")
+c.set_xattr("nice_xattr", "jiihaa")
+c.get_xattr("nice_xattr")
+c.rm_xattr("nice_xattr")
+
+c.stat()
+
+a.delete_pool(b.pool)
+
 
 License:
 ========
