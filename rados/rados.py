@@ -1,5 +1,5 @@
 """librados Python ctypes wrapper
-@author: Hannu Valtonen <hannu.valtonen@ormod.com
+@author: Hannu Valtonen <hannu.valtonen@ormod.com>
 """
 from ctypes import CDLL, c_char_p, c_size_t, c_void_p, create_string_buffer, byref
 
