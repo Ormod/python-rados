@@ -6,7 +6,7 @@ Python-rados lets you store arbitrary numbers of key/value blobs on top of Ceph 
 
 Usage:
 ======
-from rados import Rados
+from rados.rados import Rados
 
 a = Rados()
 b = a.get_pool("testi")
