@@ -14,13 +14,14 @@ class WriteError(Exception):
 
 class IncompleteWriteError(Exception):
     pass
+
 def object_deleted(method):
     def wrapper(self, *args, **kwargs):
         try:
             if self.deleted == False:
                 return method(self, *args, **kwargs)
             else:
-                raise ObjectNotFound("Object %s has been deleted" % self.oid)
+                raise ObjectNotFound("Object has been deleted")
         except:
             raise
     wrapper.__doc__ = method.__doc__
